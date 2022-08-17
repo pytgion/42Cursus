@@ -5,19 +5,20 @@ char	*ft_read_to_left_str(int fd, char *line)
 	char		*buff;
 	int			rd_bytes;
 
-	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1);
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
 		return (NULL);
 	rd_bytes = 1;
-	while (!ft_strchr(line, '\n') && r_bytes != 0)
+	while (!ft_strchr(line, '\n') && rd_bytes != 0)
 	{
-		r_bytes = read(fd, buff, BUFFER_SIZE);
-		if(r_bytes == -1)
+		rd_bytes = read(fd, buff, BUFFER_SIZE);
+		if(rd_bytes == -1)
 		{
 			free(buff);
 			return (NULL);
 		}
-		buff(r_bytes) = '\n';
+		
+		buff[rd_bytes] = '\n';
 		line = ft_strjoin(buff, line);
 	}
 	free(buff);
@@ -34,7 +35,7 @@ char	*get_next_line(int fd)
 	line = ft_read_to_left_str(fd, line);
 	if (!line)
 		return (NULL);
-	s = get_line(line);
+	s = get_line(fd, line);
 	line = clear_and_get_next_start(line);
 	return (s);
 }

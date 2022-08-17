@@ -1,13 +1,16 @@
-#include <get_next_line.h>
+#include "get_next_line.h"
 
 char	*ft_strchr(char *str, int c)
 {
 	size_t			i;
 	char			*dest;
 
+	if (!str)
+		return (0);
 	i = 0;
 	while (str[i] != '\0')
 	{
+		write(1, "m", 1);
 		if (str[i] == c)
 			return ((char *)(str + i));
 		i++;
@@ -25,31 +28,32 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *str1, char *str2)
+char	*ft_strjoin(char *left_str, char *buff)
 {
-	char		*merged;
-	size_t		i;
-	size_t		j;
+	size_t	i;
+	size_t	j;
+	char	*str;
 
-	merged = malloc((sizeof(char)) *(ft_strlen(str1) + ft_strlen(str2) + 1));
-	if (!merged)
+	if (!left_str)
+	{
+		left_str = (char *)malloc(1 * sizeof(char));
+		left_str[0] = '\0';
+	}
+	if (!left_str || !buff)
 		return (NULL);
-	i = 0;
-	while (str1[i] != '\0')
-	{
-		str[i] = merged[i];
-		i++;
-	}
+	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
+	if (str == NULL)
+		return (NULL);
+	i = -1;
 	j = 0;
-	while (str2[j])
-	{
-		str2[j] = merged[i];
-		j++;
-		i++;
-	}
-	merged[i] = '\0';
-	free(str1);
-	return (merged);
+	if (left_str)
+		while (left_str[++i] != '\0')
+			str[i] = left_str[i];
+	while (buff[j] != '\0')
+		str[i++] = buff[j++];
+	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
+	free(left_str);
+	return (str);
 }
 
 char	*get_line(int fd, char *line)
@@ -80,7 +84,7 @@ char	*get_line(int fd, char *line)
 
 char	*clear_and_get_next_start(char *line)
 {
-	int			i
+	int			i;
 	int			j;
 	char		*s;
 

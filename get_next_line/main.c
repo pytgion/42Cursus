@@ -11,6 +11,13 @@ int	main(void)
 	int		fd2;
 	int		fd3;
 	char	*line;
+	fd2 = open("test2.txt", O_RDONLY);
+
+	line = get_next_line(fd2);
+	printf("line: %s", line);
+	free(line);
+
+	close(fd2);
 
 	fd1 = open("test1.txt", O_RDONLY);
 	fd2 = open("test2.txt", O_RDONLY);

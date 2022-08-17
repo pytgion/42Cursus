@@ -10,7 +10,6 @@ char	*ft_strchr(char *str, int c)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		write(1, "m", 1);
 		if (str[i] == c)
 			return ((char *)(str + i));
 		i++;

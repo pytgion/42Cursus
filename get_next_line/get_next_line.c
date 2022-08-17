@@ -17,9 +17,8 @@ char	*ft_read_to_left_str(int fd, char *line)
 			free(buff);
 			return (NULL);
 		}
-		
-		buff[rd_bytes] = '\n';
-		line = ft_strjoin(buff, line);
+		buff[rd_bytes] = '\0';
+		line = ft_strjoin(line, buff);
 	}
 	free(buff);
 	return (line);

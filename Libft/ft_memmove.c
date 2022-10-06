@@ -1,20 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oakyuz <oakyuz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/30 13:25:12 by oakyuz            #+#    #+#             */
+/*   Updated: 2022/04/08 00:35:35 by oakyuz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <unistd.h>
 
-void	*ft_memmove(void *str1, const void *str2, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char *s;
-	unsigned char *d;
+	unsigned int	i;
+	char			*dst;
+	char			*src2;
 
-	d = (unsigned char *)str1;
-	s = (unsigned char *)str2;
-	if(!str1 && !str2)
-		return str2;
-	if(str2 > str1)
-		while(n--)
-			d[n] = s[n];
+	i = 0;
+	dst = (char *)dest;
+	src2 = (char *)src;
+	if (dest == src)
+		return (dest);
+	if (dst == NULL || src2 == NULL)
+		return (NULL);
+	if ((char *)dest < (char *)src)
+	{
+		while (n--)
+		{
+			((char *)dst)[i] = ((char *)src2)[i];
+			i++;
+		}
+	}
 	else
-		while(n--)
-			*s++ = *d++;
-	return (str1);
+	{
+		while (++i <= n)
+			dst[n - i] = src2[n - i];
+	}
+	return (dest);
 }
+
+//dest'in pointer'ı source'un önündeyse source'dan dest'e kopyalar.
+//source'un pointer'ı dest'in önünde ise sondan başlayarak kopyalar.
+//dest'in ilk pointer'ını döner.

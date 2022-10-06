@@ -1,11 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oakyuz <oakyuz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/29 20:50:21 by oakyuz            #+#    #+#             */
+/*   Updated: 2022/04/05 03:51:50 by oakyuz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <unistd.h>
 
-void	ft_bzero(char	*str, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*i;
-
-	i = (unsigned char*)str;
-	while(n--)
-		*str++ = '\0';
+	ft_memset(s, 0, n);
 }

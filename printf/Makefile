@@ -3,36 +3,42 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oakyuz <oakyuz@student.42.fr>              +#+  +:+       +#+         #
+#    By: oakyuz <oakyuz@student.42kocaeli.tr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/12 23:04:44 by oakyuz            #+#    #+#              #
-#    Updated: 2022/04/13 05:02:14 by oakyuz           ###   ########.fr        #
+#    Created: 2022/08/23 14:36:02 by oakyuz            #+#    #+#              #
+#    Updated: 2022/08/23 14:37:34 by oakyuz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= libft.a
-CC		:= gcc
-CFLAGS	:= -Wall -Wextra -Werror -I. -c
-FILES	:= $(shell find . -type f ! -name "ft_lst*.c" -name "ft_*.c")
-OBJ		:= $(FILES:%.c=%.o)
 
-BSRC	:= $(wildcard ft_lst*.c)
-B_OBJ	:= $(BSRC:%.c=%.o)
+NAME = libftprintf.a
 
-all:	$(NAME)
+SRCS = $(wildcard ft*.c)
 
-$(NAME): $(OBJ)
-	ar	-rcs $(NAME) $(OBJ)
+OBJS = $(SRCS:.c=.o)
 
-bonus:	$(OBJ) $(B_OBJ)
-	ar	-rcs $(NAME) $(OBJ) $(B_OBJ)
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	@ar -rcs $(NAME) $^
+
+%.o: %.c
+	@gcc -Wall -Wextra -Werror -o $@ -c $^
 
 clean:
-	@rm -f *.o
+	@rm -rf *.o
 
-fclean:	clean
-	@rm -f $(NAME)
+test: $(NAME)
+	@gcc $^ test.c
+	@./a.out
+	@rm ./a.out
 
-re:	fclean all
+fclean: clean
+	@rm -rf $(NAME)
 
-.PHONY:	all	bonus clean fclean re
+re: $(NAME) fclean
+	make fclean
+	make
+
+
+.PHONY: re fclean clean all

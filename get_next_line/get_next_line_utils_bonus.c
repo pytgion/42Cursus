@@ -1,43 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oakyuz <oakyuz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/25 16:52:15 by oakyuz            #+#    #+#             */
-/*   Updated: 2022/09/08 16:40:44 by oakyuz           ###   ########.fr       */
+/*   Created: 2022/09/05 21:19:18 by oakyuz            #+#    #+#             */
+/*   Updated: 2022/09/08 16:41:05 by oakyuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-int	ft_strlen(char	*str)
+size_t	ft_strlen(char *s)
 {
-	int	i;
+	size_t	i;
 
-	if (!str)
-		return (0);
 	i = 0;
-	while (str[i])
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
 		i++;
 	return (i);
 }
 
-char	*ft_strchr(char *str, int c)
+char	*ft_strchr(char *s, int c)
 {
-	int			i;
+	int	i;
 
 	i = 0;
-	if (!str)
-		return (NULL);
-	while (str[i])
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (s[i] != '\0')
 	{
-		if (str[i] == c)
-			return (str);
+		if (s[i] == (char) c)
+			return ((char *)&s[i]);
 		i++;
 	}
-	return (NULL);
+	return (0);
 }
 
 char	*ft_strjoin(char *left_str, char *buff)
@@ -68,7 +70,7 @@ char	*ft_strjoin(char *left_str, char *buff)
 	return (str);
 }
 
-char	*get_line(char *left_str)
+char	*ft_get_line(char *left_str)
 {
 	int		i;
 	char	*str;

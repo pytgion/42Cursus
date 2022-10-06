@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oakyuz <oakyuz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 22:09:48 by oakyuz            #+#    #+#             */
-/*   Updated: 2022/04/05 03:13:49 by oakyuz           ###   ########.fr       */
+/*   Created: 2022/04/01 11:06:00 by oakyuz            #+#    #+#             */
+/*   Updated: 2022/04/08 04:34:53 by oakyuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t		i;
+	char				*dest;
+	size_t				i;
 
 	i = 0;
-	while (s[i] != '\0')
+	if (!s)
+		return (NULL);
+	if (!f)
+		return (NULL);
+	dest = malloc(sizeof(char) * ft_strlen(s) + 1);
+	while (s[i])
+	{
+		dest[i] = f(i, s[i]);
 		i++;
-	return (i);
+	}
+	dest[i] = '\0';
+	return (dest);
 }
+
+//string'in içinde dolaşarak tüm elemanlara f fonksiyonunu uygular.

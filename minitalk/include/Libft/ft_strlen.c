@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pytgion <pytgion@student.42.fr>            +#+  +:+       +#+        */
+/*   By: oakyuz <oakyuz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 11:56:45 by pytgion           #+#    #+#             */
-/*   Updated: 2022/09/18 12:06:55 by pytgion          ###   ########.fr       */
+/*   Created: 2022/03/31 22:09:48 by oakyuz            #+#    #+#             */
+/*   Updated: 2022/04/05 03:13:49 by oakyuz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <signal.h>
-# include <sys/types.h>
-# include <stdlib.h>
-# include <limits.h>
-
-typedef struct s_list
+size_t	ft_strlen(const char *s)
 {
-	int			ser_sig;
-	int			cli_sig;
-}	t_list;
+	size_t		i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
